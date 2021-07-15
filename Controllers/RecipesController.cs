@@ -30,6 +30,20 @@ namespace allspice.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<Recipe>> getOneRecipe(int id)
+        {
+            try
+            {
+                return Ok(_rs.getOne(id));
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+                            }
+        }
+
         [HttpPost]
         public ActionResult<Recipe> CreateRecipe([FromBody] Recipe recipeData)
         {
@@ -43,6 +57,19 @@ namespace allspice.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpPut("{id}")]
+        public ActionResult<Recipe> update(int id, [FromBody] Recipe recipe)
+{
+    try
+    {
+        return Ok(_rs.update(id, recipe));
+    }
+    catch (System.Exception e)
+    {
+        
+        return BadRequest(e.Message);
+    }
+}
 
         
     }

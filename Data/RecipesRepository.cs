@@ -31,7 +31,27 @@ namespace allspice.Data{
         recipeData.id = id;
         return recipeData;
     }
+    internal int update(Recipe  recipeData)
+    {
+    string sql =@"
+    Update Recipes
+    SET 
+    title = @Title,
+    description = @Description,
+    imgUrl = @ImgUrl,
+    steps = @Steps,
+    ingredients = @Ingredients
+    where id = @id;
+    ";
+    return _db.Execute(sql, recipeData);
 
         
+    }
+    internal Recipe getOne(int id)
+    {
+        string sql = "SELECT * FROM Recipes  WHERE id = @id";
+        return _db.QueryFirstOrDefault<Recipe>(sql, new {id});
+
+    }
     }
 }

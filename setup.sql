@@ -18,3 +18,5 @@ CREATE table Recipes(
     steps VARCHAR(255),
     ingredients VARCHAR(255)
 ) default charset utf8 comment '';
+
+SELECT * FROM Recipes
